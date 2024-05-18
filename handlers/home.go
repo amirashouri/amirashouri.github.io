@@ -2,9 +2,19 @@ package handlers
 
 import (
 	"net/http"
-	"portfolio/views/home"
+	"portfolio/views"
 )
 
-func HandleHome(w http.ResponseWriter, r *http.Request) error {
-	return Render(w, r, home.Index())
+type HomeHandler struct{}
+
+func NewHomeHandler() *HomeHandler {
+	return &HomeHandler{}
+}
+
+func (h *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	c := views.Index()
+	err := views.Layout(c, "Amirreza Ashouri").Render(r.Context(), w)
+	if err != nil {
+		http.Error(w, "Error rendering home template", http.StatusInternalServerError)
+	}
 }

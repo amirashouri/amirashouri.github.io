@@ -3,6 +3,7 @@ package handlers
 import (
 	"log/slog"
 	"net/http"
+	"portfolio/views"
 
 	"github.com/a-h/templ"
 )
@@ -18,5 +19,5 @@ func Make(h HTTPHandler) http.HandlerFunc {
 }
 
 func Render(w http.ResponseWriter, r *http.Request, c templ.Component) error {
-	return c.Render(r.Context(), w)
+	return views.Layout(c, "Amirrez Ashouri").Render(r.Context(), w)
 }
