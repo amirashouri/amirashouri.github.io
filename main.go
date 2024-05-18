@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"portfolio/handlers"
 
 	"github.com/joho/godotenv"
 )
@@ -14,9 +14,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Welcome to my portfolio")
-	})
+	http.HandleFunc("/", handlers.Make(handlers.HandleHome))
 
 	listenAddr := os.Getenv("LISTEN_ADDR")
 	err := http.ListenAndServe(listenAddr, nil)
