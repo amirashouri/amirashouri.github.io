@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"portfolio/models"
 	"portfolio/views"
 )
 
@@ -13,7 +14,7 @@ func NewContactHandler() *ContactHandler {
 
 func (h *ContactHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	c := views.Contact()
-	err := views.Layout(c, "Amirreza Ashouri").Render(r.Context(), w)
+	err := views.Layout(c, "Amirreza Ashouri", models.CONTACT_TAB).Render(r.Context(), w)
 	if err != nil {
 		http.Error(w, "Error rendering Contact template", http.StatusInternalServerError)
 	}
