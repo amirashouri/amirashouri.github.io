@@ -1,3 +1,5 @@
 .env
 bin
 tailwindcss
+*.log
+tmp

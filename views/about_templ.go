@@ -10,6 +10,8 @@ import "context"
 import "io"
 import "bytes"
 
+import "portfolio/views/components"
+
 func About() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
@@ -23,7 +25,31 @@ func About() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container text-primary-600\"><p class=\"\">About</p></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"grid grid-cols-1 gap-4 place-content-center\"><div class=\"pb-1 place-content-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = components.AboutItem("I started my software engineering journey by learning C++ and C# at university. After that i dabbled in vanilla javascript and building static websites. I'd also practiced java to develop android apps.", "static/resources/learning.png").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"pb-1 place-content-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = components.AboutItem("My first professional job was an iOS development position. I had to learn swift and maintained two apps. Swift was a wonderful language to learn and develop mobile apps with. My first serious job was working for a big payment and top-up service company as an iOS developer that was when i was hooked in iOS and swift. After that i worked in Digikala(the biggest e-commerce platform in Iran) as the lead of the iOS team.", "static/resources/job.png").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"pb-1 place-content-center\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = components.AboutItem("Next challenge was joining Fimo a thriving startup based in Germany delivering state of the art health companion app. I faced a lot of new challenges at Fimo which helped me grew a lot. At the moment we are working on our app 2.0 version which has been released and gained a lot of attention from the community.", "static/resources/startup.png").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

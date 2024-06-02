@@ -1,0 +1,14 @@
+package components
+
+templ AboutItem(content string, imgSrc string) {
+	<div class="container text-gray-600 py-4">
+		<div class="grid md:grid-cols-2 gap-4">
+			<div class="grid-rows text-justify place-content-center">{ content }</div>
+			<div class="grid-rows place-content-center order-first self-center md:order-last">
+				<div class="flex place-content-center">
+					<img src={ imgSrc } alt="about image" class="md:w-1/2 w-3/4"/>
+				</div>
+			</div>
+		</div>
+	</div>
+}

@@ -4,6 +4,7 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     'views/*.templ',
+    'views/*/*.templ',
   ],
   theme: {
     container: {
