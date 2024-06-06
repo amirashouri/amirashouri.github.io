@@ -3,3 +3,4 @@ bin
 tailwindcss
 *.log
 tmp
+node_modules

@@ -1,7 +1,7 @@
 package views
 
 import (
-	"portfolio/middleware"
+	//"portfolio/middleware"
 	"os"
 	"portfolio/models"
 	"fmt"
@@ -12,15 +12,15 @@ templ header(title string) {
 		<title>{ title }</title>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<script src="static/script/htmx.min.js" nonce={ middleware.GetHtmxNonce(ctx) }></script>
-		<script src="https://unpkg.com/hyperscript.org@0.9.12" nonce={ middleware.GetHtmxNonce(ctx) }></script>
-		<script src="static/script/response-targets.js" nonce={ middleware.GetResponseTargetsNonce(ctx) }></script>
-		<link rel="icon" href="static/resources/code-solid.png" sizes="32x32" />
+		<link rel="icon" href="static/resources/code-solid.png" sizes="32x32"/>
+		<script src="static/script/htmx.min.js"></script>
+		<script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
 		if os.Getenv("env") == "production" {
-			<link rel="stylesheet" href="static/css/style.min.css" nonce={ middleware.GetTwNonce(ctx) }/>
+			<link rel="stylesheet" href="static/css/style.min.css"/>
 		} else {
-			<link rel="stylesheet" href="static/css/style.css" nonce={ middleware.GetTwNonce(ctx) }/>
+			<link rel="stylesheet" href="static/css/style.css"/>
 		}
+		<script src="static/script/response-targets.js"></script>
 	</head>
 }
 
@@ -34,7 +34,7 @@ templ footer() {
 				</svg>
 			</a>
 			<button class="content-center items-center" _="on click writeText('amirashouri72@gmail.com') into the navigator's clipboard toggle .hidden on #mailSVG toggle .hidden on #copy wait 1s toggle .hidden on #copy toggle .hidden on #mailSVG">
-				<svg id="mailSVG" xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 512 512"><path d="M255.4 48.2c.2-.1 .4-.2 .6-.2s.4 .1 .6 .2L460.6 194c2.1 1.5 3.4 3.9 3.4 6.5v13.6L291.5 355.7c-20.7 17-50.4 17-71.1 0L48 214.1V200.5c0-2.6 1.2-5 3.4-6.5L255.4 48.2zM48 276.2L190 392.8c38.4 31.5 93.7 31.5 132 0L464 276.2V456c0 4.4-3.6 8-8 8H56c-4.4 0-8-3.6-8-8V276.2zM256 0c-10.2 0-20.2 3.2-28.5 9.1L23.5 154.9C8.7 165.4 0 182.4 0 200.5V456c0 30.9 25.1 56 56 56H456c30.9 0 56-25.1 56-56V200.5c0-18.1-8.7-35.1-23.4-45.6L284.5 9.1C276.2 3.2 266.2 0 256 0z"/></svg>
+				<svg id="mailSVG" xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 512 512"><path d="M255.4 48.2c.2-.1 .4-.2 .6-.2s.4 .1 .6 .2L460.6 194c2.1 1.5 3.4 3.9 3.4 6.5v13.6L291.5 355.7c-20.7 17-50.4 17-71.1 0L48 214.1V200.5c0-2.6 1.2-5 3.4-6.5L255.4 48.2zM48 276.2L190 392.8c38.4 31.5 93.7 31.5 132 0L464 276.2V456c0 4.4-3.6 8-8 8H56c-4.4 0-8-3.6-8-8V276.2zM256 0c-10.2 0-20.2 3.2-28.5 9.1L23.5 154.9C8.7 165.4 0 182.4 0 200.5V456c0 30.9 25.1 56 56 56H456c30.9 0 56-25.1 56-56V200.5c0-18.1-8.7-35.1-23.4-45.6L284.5 9.1C276.2 3.2 266.2 0 256 0z"></path></svg>
 				<p id="copy" class="hidden">copied</p>
 			</button>
 		</div>
@@ -67,14 +67,17 @@ templ Nav(s models.MenuState) {
 }
 
 templ Layout(contents templ.Component, title string, selectedTab string) {
-	@header(title)
-	<body class="flex flex-col h-full">
-		@Nav(models.MenuState{IsOpen: false, SelectedPage: selectedTab})
-		<main class="flex-1 container ">
-			@contents
-		</main>
-		@footer()
-	</body>
+	<!DOCTYPE html>
+	<html lang="en">
+		@header(title)
+		<body class="flex flex-col h-screen">
+			@Nav(models.MenuState{IsOpen: false, SelectedPage: selectedTab})
+			<main class="flex-1 container mb-auto">
+				@contents
+			</main>
+			@footer()
+		</body>
+	</html>
 }
 
 templ MenuItem(item string, selectedItem string) {

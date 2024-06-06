@@ -21,14 +21,15 @@ func main() {
 		log.Fatal(err)
 	}
 
-	middlewareStack := middleware.CreateStack(middleware.TextHTMLMiddleware, middleware.CSPMiddleware)
+	middlewareStack := middleware.CreateStack( /*middleware.TextHTMLMiddleware , middleware.CSPMiddleware*/ )
 	router := http.NewServeMux()
 
-	fileServer := http.FileServer(http.Dir("./static"))
+	fileServer := http.FileServer(http.Dir("static"))
 	router.Handle("/static/*", http.StripPrefix("/static/", fileServer))
 	router.HandleFunc("/", handlers.NewHomeHandler().ServeHTTP)
 	router.HandleFunc("/about", handlers.NewAboutHandler().ServeHTTP)
-	router.HandleFunc("/contact", handlers.NewContactHandler().ServeHTTP)
+	router.HandleFunc("GET /contact", handlers.NewContactHandler().ServeHTTP)
+	router.HandleFunc("POST /contact", handlers.NewContactHandler().Submit)
 	router.HandleFunc("/projects", handlers.NewProjectsHandler().ServeHTTP)
 
 	killSig := make(chan os.Signal, 1)

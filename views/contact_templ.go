@@ -23,7 +23,31 @@ func Contact() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"container text-primary-600\"><p class=\"\">Contact</p></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex place-content-center py-4\"><form hx-post=\"/contact\" hx-trigger=\"submit\" class=\"w-full max-w-lg\" autocomplete=\"on\"><div class=\"flex flex-wrap -mx-3 mb-6\"><div class=\"w-full md:w-1/2 px-3 mb-6 md:mb-0\"><label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"_first-name\">First Name</label> <input class=\"appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-100 focus:border-green-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\" name=\"first_name\" id=\"_first-name\" type=\"text\" placeholder=\"Jane\"></div><div class=\"w-full md:w-1/2 px-3\"><label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"_last-name\">Last Name</label> <input class=\"appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-100 focus:border-green-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500\" name=\"last_name\" id=\"_last-name\" type=\"text\" placeholder=\"Doe\"></div></div><div class=\"flex flex-wrap -mx-3 mb-6\"><div class=\"w-full px-3\"><label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"_message\">YOUR MESSAGE</label> <textarea class=\"appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-100 focus:border-green-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500\" name=\"message\" id=\"_message\" type=\"text\" placeholder=\"...\"></textarea></div></div><div class=\"flex flex-wrap -mx-3 mb-6\"><div class=\"w-full px-3\"><label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"_email\">YOUR EMAIL ADDRESS</label> <input class=\"appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-100 focus:border-green-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500\" name=\"email\" id=\"_email\" type=\"email\" placeholder=\"foo@example.com\"></div></div><div class=\"flex w-full px-3 place-content-center\"><button class=\"bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded\" type=\"submit\">Submit</button></div></form></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
+
+func SuccessfulMessage() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var2 == nil {
+			templ_7745c5c3_Var2 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-green-100 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md\" role=\"alert\"><div class=\"flex\"><div class=\"py-1\"><svg class=\"fill-current h-6 w-6 text-green-500 mr-4\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"><path d=\"M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z\"></path></svg></div><div><p class=\"font-bold\">Your submission was successful</p><p class=\"text-sm\">I'l get to you as soon as possible.</p></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
