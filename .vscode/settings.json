@@ -9,7 +9,8 @@
         "labelledby",
         "Merriweather",
         "stylesheet",
-        "tailwindcss"
+        "tailwindcss",
+        "Wikitor"
     ],
     "cSpell.enableFiletypes": [
         "templ"
