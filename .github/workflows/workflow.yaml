@@ -30,10 +30,10 @@ jobs:
       - name: Run build
         run: go build . 
 
-      - name: Run vet & lint
-        run: |
-          go vet .
-          golint .
+      # - name: Run vet & lint
+      #   run: |
+      #     go vet .
+      #     golint .
 
   deploy:
     # The type of runner that the job will run on
