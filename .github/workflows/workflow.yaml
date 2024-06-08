@@ -33,7 +33,7 @@ jobs:
       - name: upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: "dist/browser/"
+          path: "./"
           
   deploy:
     # Add a dependency to the build job
