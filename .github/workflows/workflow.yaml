@@ -30,11 +30,11 @@ jobs:
       - name: Run build
         run: go build . 
 
-      # - name: Run vet & lint
-      #   run: |
-      #     go vet .
-      #     golint .
-
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "dist/browser/"
+          
   deploy:
     # Add a dependency to the build job
     needs: build
